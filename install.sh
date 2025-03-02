@@ -16,6 +16,7 @@ echo "Limpiando las bios basura que te descargaste de otro lado o las mismas si 
 echo "Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
 rm ../roms/neogeo/neogeo.zip
 rm ../roms/ports/tamagotchi/tama.b
+rm ../bios/mame/hng64.zip
 rm ../bios/geolith/neogeo.zip
 rm ../bios/geolith/aes.zip
 rm ../bios/3do/3do_arcade_saot.bin
