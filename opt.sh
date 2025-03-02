@@ -49,7 +49,7 @@ for system in "${!bios_info[@]}"; do
     # Descargar los archivos BIOS en la carpeta correspondiente
     for ((i=1; i<${#bios_array[@]}; i++)); do
         bios="${bios_array[$i]}"
-        wget -c "${RUTA}${bios}" -P "../$bios_dir/"
+        wget -c "${RUTA}${bios_dir}/${bios}" -P "../$bios_dir/"
     done
     
     echo
