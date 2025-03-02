@@ -11,7 +11,7 @@ echo "Getting Read and Write system"
 mount -o remount,rw /
 mount -o remount,rw /boot
 echo
-RUTA=https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/
+RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
 echo "Limpiando las bios basura que te descargaste de otro lado o las mismas si se te corto internet"
 echo "Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
 rm ../roms/neogeo/neogeo.zip
@@ -36,10 +36,10 @@ rm ../bios/segacd/bios_CD_J.bin
 rm ../bios/segacd/bios_CD_U.bin
 rm ../bios/mastersystem/bios_E.sms
 rm ../bios/gamegear/bios.gg
-rm ../bios//mastersystem/bios_J.sms
+rm ../bios/mastersystem/bios_J.sms
 rm ../bios/megadrive/bios_MD.bin
 rm ../bios/pokemini/bios.min
-rm ../bios//mastersystem/bios_U.sms
+rm ../bios/mastersystem/bios_U.sms
 rm ../bios/palm/bootloader-dbvz.rom
 rm ../bios/satellaview/BS-X.bin
 rm ../bios/o2em/c52.bin
