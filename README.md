@@ -1,9 +1,10 @@
-#                                  <h1 align="center"> Recalbox-9.2(& 9.2.1 & 9.2.3)-Pulstar-Bios 2025</h1>
+!!!  DONT USE IT still need TEST in Reaal Hardware !!!
+#                                  <h1 align="center"> Recalbox-10-Bios 2025</h1>
 <p align="center">
-Las Bios Correctas y necesarias para Recalbox-Pulstar 9.2 y el fix 9.2.1, 9.2.3, sin archivos innecesarios.
+Las Bios Correctas y necesarias para Recalbox-10, sin archivos innecesarios.
 </p>
 <p align="center">
-Bios Recalbox-Pulstar 9.2 and the fix 9.2.1, 9.2.3 without unnecessary files.
+Bios Recalbox-10 without unnecessary files.
 </p>
 <p align="center">
 <img src="https://raw.githubusercontent.com/PIBSAS/RetroPieBios/master/logov3.png" alt="Raspberry Pi Buenos Aires" width="400" height="500">
@@ -28,11 +29,11 @@ Password: `recalboxroot`
 Type:
 
 ```
-curl -sSL https://raw.githubusercontent.com/PIBSAS/Recalbox9.2-Pulstar/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/install.sh | bash
 ```
 
 # Tutorial: Retroconsolas
-https://sites.google.com/view/lucianostech/retro-consolas
+[https://sites.google.com/view/lucianostech/retro-consolas](https://sites.google.com/view/lucianostech/retro-consolas)
 
 <h1 align="center"> Invite a Coffee</h1>
 <p align="center">
@@ -45,4 +46,4 @@ https://sites.google.com/view/lucianostech/retro-consolas
 </p>
 
 # Tutorial: Crea tu propio Joystick Arcade con Pro-Micro mejor que Zero Delay
-https://sites.google.com/view/lucianostech/joystick-arcade
+[https://sites.google.com/view/lucianostech/joystick-arcade](https://sites.google.com/view/lucianostech/joystick-arcade)
