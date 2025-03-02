@@ -12,6 +12,7 @@ mount -o remount,rw /
 mount -o remount,rw /boot
 echo
 RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
+
 # Definir las rutas y los sistemas con sus BIOS
 declare -A bios_info=(
     ["AMIGA 1200 (AGA)"]="bios/amiga/bios kick39106.A1200 kick40068.A1200 kick40068.A4000"
@@ -21,7 +22,7 @@ declare -A bios_info=(
     ["APPLE IIGS"]="bios apple2gs1.rom apple2gs3.rom"
     ["APPLE MACINTOSH"]="bios/macintosh macintosh/MacII.ROM macintosh/MinivMacBootv2.dsk"
     ["ATARI 5200"]="bios/atari5200 5200.rom"
-    ["ATARI 7800"]="bios/atari7800 7800 BIOS (U).rom 7800 BIOS (E).rom"
+    ["ATARI 7800"]="bios/atari7800 '7800 BIOS (U).rom' '7800 BIOS (E).rom'"
     ["ATARI 8BITS"]="bios/atari800 ATARIBAS.ROM ATARIOSA.ROM ATARIOSB.ROM ATARIXL.ROM"
     ["ATARI LYNX"]="bios/lynx lynxboot.img"
     ["ATARI ST/STTE/MEGASTE/TT/FALCON"]="bios/atarist tos.img atarist/st.img atarist/ste.img atarist/megaste.img atarist/tt.img atarist/falcon.img"
@@ -33,15 +34,22 @@ declare -A bios_info=(
 # Recorre el array de sistemas y sus rutas y BIOS
 for system in "${!bios_info[@]}"; do
     # Extraer la ruta de destino y los archivos BIOS
-    IFS=" " read -r bios_dir bios_files <<< "${bios_info[$system]}"
+    read -r -a bios_array <<< "${bios_info[$system]}"
+    
+    # La primera posición del array es la carpeta destino
+    bios_dir="${bios_array[0]}"
     
     # Mostrar el nombre del sistema
     echo "$system"
     echo
     
+    # Crear la carpeta destino si no existe
+    mkdir -p "../$bios_dir"
+
     # Descargar los archivos BIOS en la carpeta correspondiente
-    for bios in $bios_files; do
-        wget -c "${RUTA}$bios_dir/$bios" -P ../$bios_dir/
+    for ((i=1; i<${#bios_array[@]}; i++)); do
+        bios="${bios_array[$i]}"
+        wget -c "${RUTA}${bios}" -P "../$bios_dir/"
     done
     
     echo
