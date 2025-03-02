@@ -894,7 +894,7 @@ sleep 1
 echo "Al fin, Copiadas todas las BIOS--Cool we finish"
 echo
 echo "Reinicia tu Raspberry Pi y Disfruta--Reboot and Enjoy"
-echo "Saludos desde Raspberry Pi Buenos Aires"
+echo "Saludos, Luciano's Tech"
 echo
 echo "Esta ventana se destruira en..."
 echo "This window will autodesroy in..."
