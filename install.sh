@@ -1,6 +1,6 @@
 #!/bin/bash
 ###########################################################################
-# Repositorio: Recalbox-9.2-Pulstar-Bios 2024
+# Repositorio: Recalbox-10-Bios 2025
 # Por: Luciano's tech (https://sites.google.com/view/lucianostech/)
 # License: http://creativecommons.org/licenses/by-sa/4.0/
 ###########################################################################
@@ -11,10 +11,11 @@ echo "Getting Read and Write system"
 mount -o remount,rw /
 mount -o remount,rw /boot
 echo
-RUTA=https://raw.githubusercontent.com/PIBSAS/Recalbox9.2-Pulstar/main/
+RUTA=https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/
 echo "Limpiando las bios basura que te descargaste de otro lado o las mismas si se te corto internet"
 echo "Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
 rm ../roms/neogeo/neogeo.zip
+rm ../roms/ports/tamagotchi/tama.b
 rm ../bios/geolith/neogeo.zip
 rm ../bios/geolith/aes.zip
 rm ../bios/3do/3do_arcade_saot.bin
@@ -52,16 +53,16 @@ rm ../bios/pcengine/gexpress.pce
 rm ../bios/3do/goldstar.bin
 rm ../bios/intellivision/grom.bin
 rm ../bios/o2em/jopac.bin
-rm ../bios/kick33180.A500
-rm ../bios/kick34005.A500
-rm ../bios/kick34005.CDTV
-rm ../bios/kick37175.A500
-rm ../bios/kick39106.A1200
-rm ../bios/kick40060.CD32
-rm ../bios/kick40060.CD32.ext
-rm ../bios/kick40063.A600
-rm ../bios/kick40068.A1200
-rm ../bios/kick40068.A4000
+rm ../bios/amiga/bios/kick33180.A500
+rm ../bios/amiga/bios/kick34005.A500
+rm ../bios/amiga/bios/kick34005.CDTV
+rm ../bios/amiga/bios/kick37175.A500
+rm ../bios/amiga/bios/kick39106.A1200
+rm ../bios/amiga/bios/kick40060.CD32
+rm ../bios/amiga/bios/kick40060.CD32.ext
+rm ../bios/amiga/bios/kick40063.A600
+rm ../bios/amiga/bios/kick40068.A1200
+rm ../bios/amiga/bios/kick40068.A4000
 rm ../bios/lynx/lynxboot.img
 rm ../bios/saturn/mpr-17933.bin
 rm ../bios/saturn/mpr-18811-mx.ic1
@@ -234,6 +235,8 @@ rm ../bios/vice/JiffyDOS_C128.bin
 rm ../bios/vice/JiffyDOS_C64.bin
 rm ../bios/vice/SCPU64/scpu-dos-1.4.bin
 rm ../bios/vice/SCPU64/scpu-dos-2.04.bin
+rm ../bios/xbox/Complex_4627.bin
+rm ../bios/xbox/mcpx_1.0.bin
 rm ../bios/xmil/IPLROM.X1
 rm ../bios/xmil/IPLROM.X1T
 echo "Sistema listo para su correcta instalacion"
@@ -242,21 +245,21 @@ echo "Obteniendo Bios---Getting Bios, be patient"
 echo
 echo "AMIGA 1200 (AGA)"
 echo
-wget -c "${RUTA}bios/kick39106.A1200" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick39106.A1200" -P ../bios/amiga/bios/
 echo
-wget -c "${RUTA}bios/kick40068.A1200" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick40068.A1200" -P ../bios/amiga/bios/
 echo
-wget -c "${RUTA}bios/kick40068.A4000" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick40068.A4000" -P ../bios/amiga/bios/
 echo
 echo "AMIGA 600 (ECS/OCS)"
 echo
-wget -c "${RUTA}bios/kick33180.A500" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick33180.A500" -P ../bios/amiga/bios/
 echo
-wget -c "${RUTA}bios/kick34005.A500" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick34005.A500" -P ../bios/amiga/bios/
 echo
-wget -c "${RUTA}bios/kick37175.A500" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick37175.A500" -P ../bios/amiga/bios/
 echo
-wget -c "${RUTA}bios/kick40063.A600" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick40063.A600" -P ../bios/amiga/bios/
 echo
 echo "kick02019.AROS.ext by default came in the OS"
 echo
@@ -264,13 +267,13 @@ echo "kick02019.AROS by default came in the OS"
 echo
 echo "AMIGA CD32"
 echo
-wget -c "${RUTA}bios/kick40060.CD32" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick40060.CD32" -P ../bios/amiga/bios/
 echo
-wget -c "${RUTA}bios/kick40060.CD32.ext" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick40060.CD32.ext" -P ../bios/amiga/bios/
 echo
 echo "AMIGA CDTV"
 echo
-wget -c "${RUTA}bios/kick34005.CDTV" -P ../bios/
+wget -c "${RUTA}bios/amiga/bios/kick34005.CDTV" -P ../bios/amiga/bios/
 echo
 echo "APPLE IIGS"
 echo
@@ -869,6 +872,21 @@ echo
 wget -c "${RUTA}bios/ti994a/spchrom.bin" -P ../bios/ti994a/
 echo
 wget -c "${RUTA}bios/ti994a/ti-disk.ctg" -P ../bios/ti994a/
+echo
+echo "MAME"
+echo
+wget -c "${RUTA}bios/mame/hng64.zip" -P ../bios/mame/
+echo
+echo
+echo "MICROSOFT XBOX"
+echo
+wget -c "${RUTA}bios/xbox/Complex_4627.bin" -P ../bios/xbox/
+echo
+wget -c "${RUTA}bios/xbox/mcpx_1.0.bin" -P ../bios/xbox/
+echo
+echo "TAMAGOTCHI"
+echo
+wget -c "${RUTA}roms/ports/tamagotchi/tama.b" -P ../roms/ports/tamagotchi/
 echo
 echo
 sleep 1
