@@ -1,3 +1,17 @@
+#!/bin/bash
+###########################################################################
+# Repositorio: Recalbox-10-Bios 2025
+# Por: Luciano's tech (https://sites.google.com/view/lucianostech/)
+# License: http://creativecommons.org/licenses/by-sa/4.0/
+###########################################################################
+
+cd
+echo "Obteniendo permisos de escritura"
+echo "Getting Read and Write system"
+mount -o remount,rw /
+mount -o remount,rw /boot
+echo
+RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
 # Definir las rutas y los sistemas con sus BIOS
 declare -A bios_info=(
     ["AMIGA 1200 (AGA)"]="bios/amiga/bios kick39106.A1200 kick40068.A1200 kick40068.A4000"
