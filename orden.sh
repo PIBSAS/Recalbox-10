@@ -15,9 +15,9 @@ echo
 # URL base del repositorio
 RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
 
-echo -e "\n        ######################################################################################################################"
+echo -e "\n    ######################################################################################################################"
 echo "        Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
-echo -e "\n        ######################################################################################################################"
+echo -e "\n    ######################################################################################################################"
 echo
 bios_files=(
   "../roms/neogeo/neogeo.zip"
@@ -455,15 +455,15 @@ for bios in "${consolas[@]}"; do
     echo -e "\n\n"  # Imprimir dos líneas antes de cada título
     
     if [[ "$bios" == "BIOS" ]]; then
-        echo -e "\n        ========================================================="
+        echo -e "\n    ========================================================="
         echo "        Getting BIOS from various console living in bios folder"
-        echo "        ========================================================="
+        echo "    ========================================================="
         echo
     else
         # Encabezado para cuando comienza la descarga de una nueva consola
-        echo -e "\n        #########################################################"
+        echo -e "\n    #########################################################"
         echo "        Getting BIOS for: $bios"
-        echo "        #########################################################"
+        echo "    #########################################################"
         echo
     fi
 
@@ -482,29 +482,10 @@ for bios in "${consolas[@]}"; do
         wget -c "${RUTA}${origen}" -P "$destino/"
     done
 done
-
-echo "Proceso de descarga completado."
-
-# Recorrer las consolas en el orden que definimos en el array 'consolas'
-#for bios in "${consolas[@]}"; do
-  #  base="${bios_ruta_base[$bios]}"
- #   destino="../${bios_ruta_base[$bios]}"
-
-    # Separar los archivos con IFS
-   # IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
-
-    # Descargar los archivos para esta consola
-    #echo "Descargando archivos para la consola: $bios"
-    #for archivo in "${archivos[@]}"; do
-     #   origen="${base}/${archivo}"
-      #  echo "Obteniendo $archivo desde ${RUTA}${origen} a $destino/"
-       # wget -c "${RUTA}${origen}" -P "$destino/"
-    #done
-#done
-
-echo "Ha Finalizado FINISHED, ENJOY!!!"
 echo
-echo "NOW REBOOTING"
+echo "FINISH HIM!!!"
+echo
+echo "TOASTY!"
 echo "3.."
 sleep 3
 echo "2.."
