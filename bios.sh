@@ -609,7 +609,28 @@ declare -A bios_archivos=(
     ["TAMAGOTCHI"]="
     tama.b"
 )
+for bios in "${!bios_ruta_base[@]}"; do
+    base="${bios_ruta_base[$bios]}"
+    destino="../${bios_ruta_base[$bios]}"
 
+    # Manejar nombres de archivos con espacios correctamente
+    IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
+
+    for archivo in "${archivos[@]}"; do
+        origen="${base}/${archivo}"
+        echo "Getting $archivo from ${RUTA}${origen} to $destino/"
+        wget -c "${RUTA}${origen}" -P "$destino/"
+    done
+done
+echo "FINISHED, ENJOY!!!"
+echo
+echo "NOW REBOOTING"
+#echo "3.."
+#sleep 3
+#echo "2.."
+#sleep 2
+#echo "1.."
+#sleep 3
 # Descargar los archivos de BIOS
 #for bios in "${!bios_ruta_base[@]}"; do
  #   base="${bios_ruta_base[$bios]}"
@@ -627,19 +648,7 @@ declare -A bios_archivos=(
     #done
     #echo
 #done
-for bios in "${!bios_ruta_base[@]}"; do
-    base="${bios_ruta_base[$bios]}"
-    destino="../${bios_ruta_base[$bios]}"
 
-    # Manejar nombres de archivos con espacios correctamente
-    IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
-
-    for archivo in "${archivos[@]}"; do
-        origen="${base}/${archivo}"
-        echo "Getting $archivo from ${RUTA}${origen} to $destino/"
-        wget -c "${RUTA}${origen}" -P "$destino/"
-    done
-done
 #echo "ATARI 7800"
 #echo
 #wget -c "${RUTA}bios/atari7800/7800 BIOS (U).rom" -P ../bios/atari7800/
