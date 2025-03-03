@@ -244,8 +244,8 @@ bios_files=(
   "../bios/xbox/mcpx_1.0.bin"
   "../bios/xmil/IPLROM.X1"
   "../bios/xmil/IPLROM.X1T"
-  '../bios/atari7800/"7800 BIOS (U).rom"'
-  '../bios/atari7800/"7800 BIOS (E).rom"'
+  "../bios/atari7800/7800 BIOS (U).rom"
+  "../bios/atari7800/7800 BIOS (E).rom"
 )
 for file in "${bios_files[@]}"; do
   [ -e "$file" ] && rm "$file" && echo "Cleaning: $file"
