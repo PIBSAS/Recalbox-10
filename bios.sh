@@ -319,18 +319,7 @@ declare -A bios_ruta_base=(
 
 # Archivos de BIOS por consola (solo nombres, sin ruta)
 declare -A bios_archivos=(
-    ["BIOS"]="
-    apple2gs1.rom|
-    apple2gs3.rom|
-    neogeo.zip|
-    neocdz.zip|
-    scph5500.bin|
-    scph5501.bin|
-    scph5502.bin|
-    scph101.bin|
-    scph7001.bin|
-    scph1001.bin|
-    ps1_rom.bin"
+    ["BIOS"]="apple2gs1.rom|apple2gs3.rom|neogeo.zip|neocdz.zip|scph5500.bin|scph5501.bin|scph5502.bin|scph101.bin|scph7001.bin|scph1001.bin|ps1_rom.bin"
     ["AMIGA 1200 (AGA)"]="
     kick39106.A1200|
     kick40068.A1200|
