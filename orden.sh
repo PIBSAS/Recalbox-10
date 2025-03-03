@@ -451,15 +451,19 @@ declare -A bios_archivos=(
 # Recorrer las consolas en el orden que definimos en el array 'consolas'
 for bios in "${consolas[@]}"; do
     # Mensaje decorativo para las consolas
+    echo -e "\n\n"  # Imprimir dos líneas antes de cada título
+    
     if [[ "$bios" == "BIOS" ]]; then
         echo -e "\n========================================================="
-        echo "Descargando BIOS ara varias consolas"
-        echo "=========================================================\n"
+        echo "Getting BIOS from various console living in bios folder"
+        echo "========================================================="
+        echo
     else
         # Encabezado para cuando comienza la descarga de una nueva consola
         echo -e "\n#########################################################"
-        echo "Descargando bios para la consola: $bios"
-        echo "#########################################################\n"
+        echo "Getting BIOS for console: $bios"
+        echo "#########################################################"
+        echo
     fi
 
     base="${bios_ruta_base[$bios]}"
@@ -471,7 +475,9 @@ for bios in "${consolas[@]}"; do
     # Descargar los archivos para esta consola
     for archivo in "${archivos[@]}"; do
         origen="${base}/${archivo}"
-        echo "Obteniendo $archivo desde ${RUTA}${origen} a $destino/"
+        echo
+        echo "Getting $archivo from ${RUTA}${origen} to $destino/"
+        echo
         wget -c "${RUTA}${origen}" -P "$destino/"
     done
 done
