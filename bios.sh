@@ -15,8 +15,9 @@ echo
 # URL base del repositorio
 RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
 
-echo "Limpiando las bios basura que te descargaste de otro lado o las mismas si se te corto internet"
-echo "Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
+echo -e "\n   ##############################################################################################################################"
+echo "         Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
+echo -e "\n   ##############################################################################################################################"
 echo
 bios_files=(
   "../roms/neogeo/neogeo.zip"
@@ -251,6 +252,71 @@ for file in "${bios_files[@]}"; do
   [ -e "$file" ] && rm "$file" && echo "Cleaning: $file"
 done
 echo
+consolas=(
+    "BIOS"
+    "AMIGA 1200 (AGA)"
+    "AMIGA 600 (ECS/OCS)"
+    "AMIGA CD32"
+    "AMIGA CDTV"
+    "APPLE MACINTOSH"
+    "ATARI 5200"
+    "ATARI 7800"
+    "ATARI 8BITS"
+    "ATARI LYNX"
+    "ATARI ST/STTE/MEGASTE/TT/FALCON"
+    "COLECOVISION"
+    "COMMODORE 64"
+    "COMMODORE 64 SCPU64"
+    "DRAGON 32/64"
+    "ELEKTRONIKA BK"
+    "FAIRCHILD CHANNEL-F"
+    "MAGNAVOX ODYSSEY"
+    "MATTEL INTELLIVISION"
+    "NEC PC-8800 SERIES"
+    "NEC PC-9800 SERIES"
+    "NEC PC-ENGINE"
+    "NEC PC-ENGINE CD"
+    "NEC PC-FX"
+    "NINTENDO 64DD"
+    "NINTENDO DS"
+    "NINTENDO FAMILY COMPUTER DISK SYSTEM"
+    "NINTENDO GAMEBOY"
+    "NINTENDO GAME BOY ADVANCE"
+    "NINTENDO GAMEBOY COLOR"
+    "NINTENDO GAMECUBE EUROPE"
+    "NINTENDO GAMECUBE JAPAN"
+    "NINTENDO GAMECUBE USA"
+    "NINTENDO POKEMON MINI"
+    "NINTENDO SATELLAVIEW"
+    "NINTENDO SUFAMI TURBO"
+    "NINTENDO SUPER GAMEBOY"
+    "PALM PILOT"
+    "PANASONIC 3DO"
+    "PENTAGON 128/512/1024 (ZX SPECTRUM CLONE)"
+    "PHILIPS CD-I"
+    "PHILIPS VIDEOPAC+"
+    "SNK NEO-GEO"
+    "SNK GEOLITH"
+    "SNK NEO-GEO CD"
+    "SCORPION 256K (ZX SPECTRUM CLONE)"
+    "SEGA DREAMCAST"
+    "SEGA GAMEGEAR"
+    "SEGA MEGA CD"
+    "SEGA MASTERSYSTEM"
+    "SEGA MEGADRIVE/GENESIS"
+    "SEGA SATURN"
+    "SHARP X1"
+    "SHARP X68000"
+    "SONY PLAYSTATION 2"
+    "SUPER CASSETTE VISION"
+    "TRS-80 COLOR COMPUTER 1/2"
+    "TANGERINE ORIC/ATMOS"
+    "TEXAS INSTRUMENT TI-99/4A"
+    "MAME"
+    "MICROSOFT XBOX"
+    "TAMAGOTCHI"
+)
+echo
 # Rutas base de BIOS por consola
 declare -A bios_ruta_base=(
     ["BIOS"]="bios"
@@ -382,60 +448,49 @@ declare -A bios_archivos=(
     ["MICROSOFT XBOX"]="Complex_4627.bin|mcpx_1.0.bin"
     ["TAMAGOTCHI"]="tama.b"
 )
-for bios in "${!bios_ruta_base[@]}"; do
+
+# Recorrer las consolas en el orden que definimos en el array 'consolas'
+for bios in "${consolas[@]}"; do
+    # Mensaje decorativo para las consolas
+    echo -e "\n\n"  # Imprimir dos líneas antes de cada título
+    
+    if [[ "$bios" == "BIOS" ]]; then
+        echo -e "\n    ================================================================="
+        echo "          Getting BIOS from various console living in bios folder"
+        echo "    ================================================================="
+        echo
+    else
+        # Encabezado para cuando comienza la descarga de una nueva consola
+        echo -e "\n    ###############################################################"
+        echo "                        Getting BIOS for: $bios"
+        echo "    ###############################################################"
+        echo
+    fi
+
     base="${bios_ruta_base[$bios]}"
     destino="../${bios_ruta_base[$bios]}"
 
-    # Manejar nombres de archivos con espacios correctamente
+    # Separar los archivos con IFS
     IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
 
+    # Descargar los archivos para esta consola
     for archivo in "${archivos[@]}"; do
         origen="${base}/${archivo}"
+        echo
         echo "Getting $archivo from ${RUTA}${origen} to $destino/"
+        echo
         wget -c "${RUTA}${origen}" -P "$destino/"
     done
 done
-echo "FINISHED, ENJOY!!!"
 echo
-echo "NOW REBOOTING"
-#echo "3.."
-#sleep 3
-#echo "2.."
-#sleep 2
-#echo "1.."
-#sleep 3
-# Descargar los archivos de BIOS
-#for bios in "${!bios_ruta_base[@]}"; do
- #   base="${bios_ruta_base[$bios]}"
-  #  destino="../${bios_ruta_base[$bios]}"
-
-   # echo "Getting BIOS for $bios..."
-
-    # Usamos eval para convertir la cadena en una lista válida
-    #eval "archivos=(${bios_archivos[$bios]})"
-
-    #for archivo in "${archivos[@]}"; do
-     #   origen="${base}/${archivo}"
-      #  echo "Getting $archivo from ${RUTA}${origen} to $destino/"
-       # wget -c "${RUTA}${origen}" -P "$destino/"
-    #done
-    #echo
-#done
-
-#echo "ATARI 7800"
-#echo
-#wget -c "${RUTA}bios/atari7800/7800 BIOS (U).rom" -P ../bios/atari7800/
-#echo
-#wget -c "${RUTA}bios/atari7800/7800 BIOS (E).rom" -P ../bios/atari7800/
-#echo
-echo "FINISHED, ENJOY!!!"
+echo "FINISH HIM!!!"
 echo
-echo "NOW REBOOTING"
+echo "TOASTY!"
 echo "3.."
 sleep 3
 echo "2.."
 sleep 2
 echo "1.."
 sleep 3
-#reboot
-#exit 0
+reboot
+exit 0
