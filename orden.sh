@@ -15,9 +15,10 @@ echo
 # URL base del repositorio
 RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
 
-echo -e "\n   ##############################################################################################################################"
-echo "         Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
-echo -e "\n   ##############################################################################################################################"
+echo -e "\n   ################################################################################################"
+echo "             Cleaning the garbage bios downloaded from other sites" 
+echo "             or from this site but if you internet shutdown in the process"
+echo -e "\n   ################################################################################################"
 echo
 bios_files=(
   "../roms/neogeo/neogeo.zip"
