@@ -17,6 +17,9 @@ RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
 
 echo "Limpiando las bios basura que te descargaste de otro lado o las mismas si se te corto internet"
 echo "Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
+
+../bios/atari7800/'7800 BIOS (U).rom'
+../bios/atari7800/'7800 BIOS (E).rom'
 bios_files=(
   "../roms/neogeo/neogeo.zip"
   "../roms/ports/tamagotchi/tama.b"
@@ -28,8 +31,6 @@ bios_files=(
   "../bios/geolith/aes.zip"
   "../bios/3do/3do_arcade_saot.bin"
   "../bios/atari5200/5200.rom"
-  "../bios/atari7800/'7800 BIOS (U).rom'"
-  "../bios/atari7800/'7800 BIOS (E).rom'"
   "../bios/apple2gs1.rom"
   "../bios/apple2gs3.rom"
   "../bios/atari800/ATARIBAS.ROM"
@@ -260,7 +261,6 @@ declare -A bios_ruta_base=(
     ["AMIGA CDTV"]="bios/amiga/bios"
     ["APPLE MACINTOSH"]="bios/macintosh"
     ["ATARI 5200"]="bios/atari5200"
-    ["ATARI 7800"]="bios/atari7800"
     ["ATARI 8BITS"]="bios/atari800"
     ["ATARI LYNX"]="bios/lynx"
     ["ATARI ST/STTE/MEGASTE/TT/FALCON"]="bios/atarist"
@@ -326,7 +326,6 @@ declare -A bios_archivos=(
     ["AMIGA CDTV"]="kick34005.CDTV"
     ["APPLE MACINTOSH"]="MacII.ROM MinivMacBootv2.dsk"
     ["ATARI 5200"]="5200.rom"
-    ["ATARI 7800"]="'7800 BIOS (U).rom 7800 BIOS (E).rom'"
     ["ATARI 8BITS"]="ATARIBAS.ROM ATARIOSA.ROM ATARIOSB.ROM ATARIXL.ROM"
     ["ATARI LYNX"]="lynxboot.img"
     ["ATARI ST/STTE/MEGASTE/TT/FALCON"]="tos.img st.img ste.img megaste.img tt.img falcon.img"
@@ -403,7 +402,7 @@ done
 
 echo "ATARI 7800"
 echo
-wget -c "${RUTA}bios/7800 BIOS (U).rom" -P ../bios/atari7800/
+wget -c "${RUTA}bios/atari7800/7800 BIOS (U).rom" -P ../bios/atari7800/
 echo
-wget -c "${RUTA}bios/7800 BIOS (E).rom" -P ../bios/atari7800/
+wget -c "${RUTA}bios/atari7800/7800 BIOS (E).rom" -P ../bios/atari7800/
 echo
