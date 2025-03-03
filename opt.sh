@@ -248,8 +248,10 @@ bios_files=(
   "../bios/xmil/IPLROM.X1T"
 )
 for file in "${bios_files[@]}"; do
-  [ -e "$file" ] && rm "$file" && echo "Eliminado: $file"
+  [ -e "$file" ] && rm "$file" && echo "Cleaning: $file"
 done
+rm ../bios/atari7800/"7800 BIOS (U).rom"
+rm ../bios/atari7800/"7800 BIOS (E).rom"
 echo
 
 # Rutas base de BIOS por consola
@@ -387,14 +389,14 @@ for bios in "${!bios_ruta_base[@]}"; do
     base="${bios_ruta_base[$bios]}"
     destino="../${bios_ruta_base[$bios]}"
 
-    echo "Descargando BIOS para $bios..."
+    echo "Getting BIOS for $bios..."
 
     # Usamos eval para convertir la cadena en una lista válida
     eval "archivos=(${bios_archivos[$bios]})"
 
     for archivo in "${archivos[@]}"; do
         origen="${base}/${archivo}"
-        echo "Descargando $archivo desde ${RUTA}${origen} a $destino/"
+        echo "Getting $archivo from ${RUTA}${origen} to $destino/"
         wget -c "${RUTA}${origen}" -P "$destino/"
     done
     echo
