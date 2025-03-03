@@ -15,9 +15,9 @@ echo
 # URL base del repositorio
 RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
 
-echo -e "\n    ##############################################################################################################################"
-echo "             Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
-echo -e "\n    ##############################################################################################################################"
+echo -e "\n   ##############################################################################################################################"
+echo "         Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
+echo -e "\n   ##############################################################################################################################"
 echo
 bios_files=(
   "../roms/neogeo/neogeo.zip"
@@ -461,9 +461,9 @@ for bios in "${consolas[@]}"; do
         echo
     else
         # Encabezado para cuando comienza la descarga de una nueva consola
-        echo -e "\n    #########################################################"
+        echo -e "\n    ###############################################################"
         echo "                        Getting BIOS for: $bios"
-        echo "    #########################################################"
+        echo "    ###############################################################"
         echo
     fi
 
