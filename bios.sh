@@ -250,10 +250,7 @@ bios_files=(
 for file in "${bios_files[@]}"; do
   [ -e "$file" ] && rm "$file" && echo "Cleaning: $file"
 done
-#rm ../bios/atari7800/"7800 BIOS (U).rom"
-#rm ../bios/atari7800/"7800 BIOS (E).rom"
 echo
-
 # Rutas base de BIOS por consola
 declare -A bios_ruta_base=(
     ["BIOS"]="bios"
@@ -263,6 +260,7 @@ declare -A bios_ruta_base=(
     ["AMIGA CDTV"]="bios/amiga/bios"
     ["APPLE MACINTOSH"]="bios/macintosh"
     ["ATARI 5200"]="bios/atari5200"
+    ["ATARI 7800"]="bios/atari7800"
     ["ATARI 8BITS"]="bios/atari800"
     ["ATARI LYNX"]="bios/lynx"
     ["ATARI ST/STTE/MEGASTE/TT/FALCON"]="bios/atarist"
@@ -328,6 +326,8 @@ declare -A bios_archivos=(
     ["AMIGA CDTV"]="kick34005.CDTV"
     ["APPLE MACINTOSH"]="MacII.ROM MinivMacBootv2.dsk"
     ["ATARI 5200"]="5200.rom"
+    ["ATARI 7800"]="7800 BIOS (U).rom
+7800 BIOS (E).rom"
     ["ATARI 8BITS"]="ATARIBAS.ROM ATARIOSA.ROM ATARIOSB.ROM ATARIXL.ROM"
     ["ATARI LYNX"]="lynxboot.img"
     ["ATARI ST/STTE/MEGASTE/TT/FALCON"]="tos.img st.img ste.img megaste.img tt.img falcon.img"
@@ -385,29 +385,41 @@ declare -A bios_archivos=(
 )
 
 # Descargar los archivos de BIOS
+#for bios in "${!bios_ruta_base[@]}"; do
+ #   base="${bios_ruta_base[$bios]}"
+  #  destino="../${bios_ruta_base[$bios]}"
+
+   # echo "Getting BIOS for $bios..."
+
+    # Usamos eval para convertir la cadena en una lista válida
+    #eval "archivos=(${bios_archivos[$bios]})"
+
+    #for archivo in "${archivos[@]}"; do
+     #   origen="${base}/${archivo}"
+      #  echo "Getting $archivo from ${RUTA}${origen} to $destino/"
+       # wget -c "${RUTA}${origen}" -P "$destino/"
+    #done
+    #echo
+#done
 for bios in "${!bios_ruta_base[@]}"; do
     base="${bios_ruta_base[$bios]}"
     destino="../${bios_ruta_base[$bios]}"
 
-    echo "Getting BIOS for $bios..."
-
-    # Usamos eval para convertir la cadena en una lista válida
-    eval "archivos=(${bios_archivos[$bios]})"
+    # Manejar nombres de archivos con espacios correctamente
+    IFS=$'\n' read -r -d '' -a archivos <<< "${bios_archivos[$bios]}"
 
     for archivo in "${archivos[@]}"; do
         origen="${base}/${archivo}"
         echo "Getting $archivo from ${RUTA}${origen} to $destino/"
         wget -c "${RUTA}${origen}" -P "$destino/"
     done
-    echo
 done
-
-echo "ATARI 7800"
-echo
-wget -c "${RUTA}bios/atari7800/7800 BIOS (U).rom" -P ../bios/atari7800/
-echo
-wget -c "${RUTA}bios/atari7800/7800 BIOS (E).rom" -P ../bios/atari7800/
-echo
+#echo "ATARI 7800"
+#echo
+#wget -c "${RUTA}bios/atari7800/7800 BIOS (U).rom" -P ../bios/atari7800/
+#echo
+#wget -c "${RUTA}bios/atari7800/7800 BIOS (E).rom" -P ../bios/atari7800/
+#echo
 echo "FINISHED, ENJOY!!!"
 echo
 echo "NOW REBOOTING"
@@ -417,5 +429,5 @@ echo "2.."
 sleep 2
 echo "1.."
 sleep 3
-reboot
-exit 0
+#reboot
+#exit 0
