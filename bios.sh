@@ -408,3 +408,14 @@ wget -c "${RUTA}bios/atari7800/7800 BIOS (U).rom" -P ../bios/atari7800/
 echo
 wget -c "${RUTA}bios/atari7800/7800 BIOS (E).rom" -P ../bios/atari7800/
 echo
+echo "FINISHED, ENJOY!!!"
+echo
+echo "NOW REBOOTING"
+echo "3.."
+sleep 3
+echo "2.."
+sleep 2
+echo "1.."
+sleep 3
+reboot
+exit 0
