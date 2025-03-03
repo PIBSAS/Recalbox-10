@@ -17,9 +17,7 @@ RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
 
 echo "Limpiando las bios basura que te descargaste de otro lado o las mismas si se te corto internet"
 echo "Cleaning the garbage bios downloaded from other sites or from this site but if you internet shutdown in the process"
-
-../bios/atari7800/'7800 BIOS (U).rom'
-../bios/atari7800/'7800 BIOS (E).rom'
+echo
 bios_files=(
   "../roms/neogeo/neogeo.zip"
   "../roms/ports/tamagotchi/tama.b"
@@ -246,12 +244,14 @@ bios_files=(
   "../bios/xbox/mcpx_1.0.bin"
   "../bios/xmil/IPLROM.X1"
   "../bios/xmil/IPLROM.X1T"
+  '../bios/atari7800/"7800 BIOS (U).rom"'
+  '../bios/atari7800/"7800 BIOS (E).rom"'
 )
 for file in "${bios_files[@]}"; do
   [ -e "$file" ] && rm "$file" && echo "Cleaning: $file"
 done
-rm ../bios/atari7800/"7800 BIOS (U).rom"
-rm ../bios/atari7800/"7800 BIOS (E).rom"
+#rm ../bios/atari7800/"7800 BIOS (U).rom"
+#rm ../bios/atari7800/"7800 BIOS (E).rom"
 echo
 
 # Rutas base de BIOS por consola
