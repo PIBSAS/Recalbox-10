@@ -454,15 +454,15 @@ for bios in "${consolas[@]}"; do
     echo -e "\n\n"  # Imprimir dos líneas antes de cada título
     
     if [[ "$bios" == "BIOS" ]]; then
-        echo -e "\n========================================================="
-        echo "Getting BIOS from various console living in bios folder"
-        echo "========================================================="
+        echo -e "\n\t========================================================="
+        echo "\tGetting BIOS from various console living in bios folder"
+        echo "\t========================================================="
         echo
     else
         # Encabezado para cuando comienza la descarga de una nueva consola
-        echo -e "\n#########################################################"
-        echo "Getting BIOS for console: $bios"
-        echo "#########################################################"
+        echo -e "\n\t#########################################################"
+        echo "\tGetting BIOS for: $bios"
+        echo "\t#########################################################"
         echo
     fi
 
