@@ -447,8 +447,21 @@ declare -A bios_archivos=(
     ["MICROSOFT XBOX"]="Complex_4627.bin|mcpx_1.0.bin"
     ["TAMAGOTCHI"]="tama.b"
 )
+
 # Recorrer las consolas en el orden que definimos en el array 'consolas'
 for bios in "${consolas[@]}"; do
+    # Mensaje decorativo para las consolas
+    if [[ "$bios" == "BIOS" ]]; then
+        echo -e "\n========================================================="
+        echo "Descargando archivos BIOS compartidos (para varias consolas)"
+        echo "========================================================="
+    else
+        # Encabezado para cuando comienza la descarga de una nueva consola
+        echo -e "\n#########################################################"
+        echo "Descargando archivos para la consola: $bios"
+        echo "#########################################################"
+    fi
+
     base="${bios_ruta_base[$bios]}"
     destino="../${bios_ruta_base[$bios]}"
 
@@ -456,23 +469,28 @@ for bios in "${consolas[@]}"; do
     IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
 
     # Descargar los archivos para esta consola
-    echo "Descargando archivos para la consola: $bios"
     for archivo in "${archivos[@]}"; do
         origen="${base}/${archivo}"
         echo "Obteniendo $archivo desde ${RUTA}${origen} a $destino/"
         wget -c "${RUTA}${origen}" -P "$destino/"
     done
 done
-#for bios in "${!bios_ruta_base[@]}"; do
- #   base="${bios_ruta_base[$bios]}"
-  #  destino="../${bios_ruta_base[$bios]}"
 
-    # Manejar nombres de archivos con espacios correctamente
+echo "Proceso de descarga completado."
+
+# Recorrer las consolas en el orden que definimos en el array 'consolas'
+#for bios in "${consolas[@]}"; do
+  #  base="${bios_ruta_base[$bios]}"
+ #   destino="../${bios_ruta_base[$bios]}"
+
+    # Separar los archivos con IFS
    # IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
 
+    # Descargar los archivos para esta consola
+    #echo "Descargando archivos para la consola: $bios"
     #for archivo in "${archivos[@]}"; do
      #   origen="${base}/${archivo}"
-      #  echo "Getting $archivo from ${RUTA}${origen} to $destino/"
+      #  echo "Obteniendo $archivo desde ${RUTA}${origen} a $destino/"
        # wget -c "${RUTA}${origen}" -P "$destino/"
     #done
 #done
