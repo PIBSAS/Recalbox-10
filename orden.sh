@@ -453,13 +453,13 @@ for bios in "${consolas[@]}"; do
     # Mensaje decorativo para las consolas
     if [[ "$bios" == "BIOS" ]]; then
         echo -e "\n========================================================="
-        echo "Descargando archivos BIOS compartidos (para varias consolas)"
-        echo "========================================================="
+        echo "Descargando BIOS ara varias consolas"
+        echo "=========================================================\n"
     else
         # Encabezado para cuando comienza la descarga de una nueva consola
         echo -e "\n#########################################################"
-        echo "Descargando archivos para la consola: $bios"
-        echo "#########################################################"
+        echo "Descargando bios para la consola: $bios"
+        echo "#########################################################\n"
     fi
 
     base="${bios_ruta_base[$bios]}"
