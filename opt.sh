@@ -401,3 +401,9 @@ for bios in "${!bios_ruta_base[@]}"; do
     echo
 done
 
+echo "ATARI 7800"
+echo
+wget -c "${RUTA}bios/7800 BIOS (U).rom" -P ../bios/atari7800/
+echo
+wget -c "${RUTA}bios/7800 BIOS (E).rom" -P ../bios/atari7800/
+echo
