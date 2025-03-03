@@ -15,20 +15,6 @@ echo
 # URL base del repositorio
 RUTA="https://raw.githubusercontent.com/PIBSAS/Recalbox-10/main/"
 
-# Consolas/Sistemas con BIOS ya incluidas en el OS
-declare -A bios_en_os=(
-    ["SPECTRAVIDEO"]="svi328.rom svi328a.rom svi806.rom svi806se.rom"
-)
-
-# Mostrar mensajes para BIOS incluidas en el OS
-for bios in "${!bios_en_os[@]}"; do
-    echo "$bios"
-    for archivo in ${bios_en_os[$bios]}; do
-        echo "$archivo by default came in the OS"
-    done
-    echo
-done
-
 # Rutas base de BIOS por consola
 declare -A bios_ruta_base=(
     ["BIOS"]="bios"
@@ -98,7 +84,7 @@ declare -A bios_ruta_base=(
 
 # Archivos de BIOS por consola (solo nombres, sin ruta)
 declare -A bios_archivos=(
-    ["BIOS"]="apple2gs1.rom apple2gs3.rom roms/neogeo/neogeo.zip neocdz.zip scph5500.bin scph5501.bin scph5502.bin scph101.bin scph7001.bin scph1001.bin ps1_rom.bin"
+    ["BIOS"]="apple2gs1.rom apple2gs3.rom neogeo.zip neocdz.zip scph5500.bin scph5501.bin scph5502.bin scph101.bin scph7001.bin scph1001.bin ps1_rom.bin"
     ["AMIGA 1200 (AGA)"]="kick39106.A1200 kick40068.A1200 kick40068.A4000"
     ["AMIGA 600 (ECS/OCS)"]="kick33180.A500 kick34005.A500 kick37175.A500 kick40063.A600 "
     ["AMIGA CD32"]="kick40060.CD32 kick40060.CD32.ext"
@@ -119,7 +105,7 @@ declare -A bios_archivos=(
     ["NEC PC-8800 SERIES"]="n88.rom n88_0.rom n88_1.rom n88_2.rom n88_3.rom n88n.rom disk.rom n88knj1.rom"
     ["NEC PC-9800 SERIES"]="bios.rom font.bmp font.rom itf.rom sound.rom 2608_bd.wav 2608_hh.wav 2608_rim.wav 2608_sd.wav 2608_tom.wav 2608_top.wav"
     ["NEC PC-ENGINE"]="gexpress.pce"
-    ["NEC PC-ENGINE CD"]="syscard3.pce syscard1.pce syscard2.pce pcenginecd/syscard2u.pce pcenginecd/syscard3u.pce"
+    ["NEC PC-ENGINE CD"]="syscard3.pce syscard1.pce syscard2.pce syscard2u.pce syscard3u.pce"
     ["NEC PC-FX"]="pcfx.rom"
     ["NINTENDO 64DD"]="IPL.n64"
     ["NINTENDO DS"]="bios7.bin bios9.bin firmware.bin"
@@ -134,11 +120,11 @@ declare -A bios_archivos=(
     ["NINTENDO SUPER GAMEBOY"]="sgb_bios.bin SGB1.sfc SGB2.sfc"
     ["PALM PILOT"]="palmos41-en-m515.rom bootloader-dbvz.rom"
     ["PANASONIC 3DO"]="panafz1.bin panafz1j.bin panafz1j-norsa.bin panafz10.bin panafz10-norsa.bin panafz10e-anvil.bin panafz10e-anvil-norsa.bin goldstar.bin sanyotry.bin 3do_arcade_saot.bin panafz1-kanji.bin /panafz1j-kanji.bin panafz10ja-anvil-kanji.bin"
-    ["PENTAGON 128/512/1024 (ZX SPECTRUM CLONE)"]="128p-0.rom 128p-1.rom gluck.rom trdos.rom "
+    ["PENTAGON 128/512/1024 (ZX SPECTRUM CLONE)"]="128p-0.rom 128p-1.rom gluck.rom trdos.rom"
     ["PHILIPS CD-I"]="cdimono1.zip cdibios.zip cdimono2.zip"
     ["PHILIPS VIDEOPAC+"]="g7400.bin jopac.bin"
     ["SNK NEO-GEO"]="neogeo.zip"
-    ["SNK GEOLITH"]="aes.zip roms/neogeo/neogeo.zip"
+    ["SNK GEOLITH"]="aes.zip neogeo.zip"
     ["SNK NEO-GEO CD"]="neocd.bin uni-bioscd.rom top-sp1.bin front-sp1.bin neocd_sz.rom neocd_z.rom neocd_st.rom neocd_t.rom neocd_sf.rom neocd_f.rom 000-lo.lo ng-lo.rom"
     ["SCORPION 256K (ZX SPECTRUM CLONE)"]="256s-0.rom 256s-1.rom 256s-2.rom 256s-3.rom"
     ["SEGA DREAMCAST"]="awbios.zip dc_boot.bin dc_flash.bin naomi.zip airlbios.zip hod2bios.zip naomi2.zip naomigd.zip"
@@ -158,93 +144,19 @@ declare -A bios_archivos=(
     ["MICROSOFT XBOX"]="Complex_4627.bin mcpx_1.0.bin"
     ["TAMAGOTCHI"]="tama.b"
 )
-# Definir las rutas de origen en el repositorio
-declare -A bios_origen=(
-    ["AMIGA 1200 (AGA)"]="bios/amiga/bios kick39106.A1200 kick40068.A1200 kick40068.A4000"
-    ["AMIGA 600 (ECS/OCS)"]=""
-    ["AMIGA CD32"]=""
-    ["AMIGA CDTV"]=""
-    ["APPLE IIGS"]=""
-    ["APPLE MACINTOSH"]=""
-    ["ATARI 5200"]=""
-    ["ATARI 7800"]=""
-    ["ATARI 8BITS"]=""
-    ["ATARI LYNX"]=""
-    ["ATARI ST/STTE/MEGASTE/TT/FALCON"]=""
-    ["COLECOVISION"]=""
-    ["COMMODORE 64"]=""
-    ["DRAGON 32/64"]=""
-    ["ELEKTRONIKA BK"]=""
-    ["FAIRCHILD CHANNEL-F"]=""
-    ["MAGNAVOX ODYSSEY"]=""
-    ["MATTEL INTELLIVISION"]=""
-    ["NEC PC-8800 SERIES"]=""
-    ["NEC PC-9800 SERIES"]=""
-    ["NEC PC-ENGINE"]=""
-    ["NEC PC-ENGINE CD"]=""
-    ["NEC PC-FX"]=""
-    ["NINTENDO 64DD"]=""
-    ["NINTENDO DS"]=""
-    ["NINTENDO FAMILY COMPUTER DISK SYSTEM"]=""
-    ["NINTENDO GAMEBOY"]=""
-    ["NINTENDO GAME BOY ADVANCE"]=""
-    ["NINTENDO GAMEBOY COLOR"]=""
-    ["NINTENDO GAMECUBE"]=""
-    ["NINTENDO POKEMON MINI"]=""
-    ["NINTENDO SATELLAVIEW"]=""
-    ["NINTENDO SUFAMI TURBO"]=""
-    ["NINTENDO SUPER GAMEBOY"]=""
-    ["PALM PILOT"]=""
-    ["PANASONIC 3DO"]=""
-    ["PENTAGON 128/512/1024 (ZX SPECTRUM CLONE)"]=""
-    ["PHILIPS CD-I"]=""
-    ["PHILIPS VIDEOPAC+"]=""
-    ["SNK NEO-GEO"]=""
-    ["SNK NEO-GEO CD"]=""
-    ["SAMMY ATOMISWAVE"]=""
-    ["SCORPION 256K (ZX SPECTRUM CLONE)"]=""
-    ["SEGA DREAMCAST"]=""
-    ["SEGA GAMEGEAR"]=""
-    ["SEGA MEGA CD"]=""
-    ["SEGA MASTERSYSTEM"]=""
-    ["SEGA MEGADRIVE/GENESIS"]=""
-    ["SEGA NAOMI"]=""
-    ["SEGA NAOMI 2"]=""
-    ["SEGA NAOMI GD-ROM"]=""
-    ["SEGA SATURN"]=""
-    ["SHARP X1"]=""
-    ["SHARP X68000"]=""
-    ["SONY PLAYSTATION"]=""
-    ["SONY PLAYSTATION 2"]=""
-    ["SPECTRAVIDEO"]=""
-    ["SUPER CASSETTE VISION"]=""
-    ["TRS-80 COLOR COMPUTER 1/2"]=""
-    ["TANGERINE ORIC/ATMOS"]=""
-    ["TEXAS INSTRUMENT TI-99/4A"]=""
-    ["MAME"]=""
-    ["MICROSOFT XBOX"]="bios/xbox/ Complex_4627.bin mcpx_1.0.bin"
-    ["TAMAGOTCHI"]="roms/ports/tamagotchi/ tama.b"
-)
 
-# Definir las rutas de destino local
-declare -A bios_destino=(
-    ["ATARIBAS.ROM"]="bios/atari800"
-    ["ATARIOSA.ROM"]="bios/atari800"
-    ["ATARIOSB.ROM"]="bios/atari800"
-    ["kick39106.A1200"]="bios/amiga/bios"
-    ["kick40068.A1200"]="bios/amiga/bios"
-    ["kick40068.A4000"]="bios/amiga/bios"
-    ["apple2gs1.rom"]="bios"
-    ["apple2gs3.rom"]="bios"
-    ["5200.rom"]="bios/atari5200"
-)
+# Descargar los archivos de BIOS
+for bios in "${!bios_ruta_base[@]}"; do
+    base="${bios_ruta_base[$bios]}"
+    archivos="${bios_archivos[$bios]}"
+    destino="../${bios_ruta_base[$bios]}"
 
-# Descargar los archivos
-for bios in "${!bios_origen[@]}"; do
-    origen="${bios_origen[$bios]}"
-    destino="${bios_destino[$bios]}"
+    echo "Descargando BIOS para $bios..."
     
-    echo "Descargando $bios..."
-    wget -c "${RUTA}${origen}" -P "$destino/"
+    for archivo in $archivos; do
+        origen="${base}/${archivo}"
+        echo "Descargando $archivo desde ${RUTA}${origen} a $destino/"
+        wget -c "${RUTA}${origen}" -P "$destino/"
+    done
     echo
 done
