@@ -1,6 +1,6 @@
 #!/bin/bash
 ###########################################################################
-# Repositorio: Recalbox-10-Bios 2025
+# Repositorio: Recalbox-10-Bios 2026
 # Por: Luciano's tech (https://sites.google.com/view/lucianostech/)
 # License: http://creativecommons.org/licenses/by-sa/4.0/
 ###########################################################################
@@ -248,6 +248,8 @@ echobios_files=(
   "../bios/xmil/IPLROM.X1T"
   "../bios/atari7800/7800 BIOS (U).rom"
   "../bios/atari7800/7800 BIOS (E).rom"
+  "../bios/scummvm/MT32_CONTROL.ROM"
+  "../bios/scummvm/MT32_PCM.ROM"
 )
 for file in "${bios_files[@]}"; do
   [ -e "$file" ] && rm "$file" && echo "Cleaning: $file"
@@ -310,6 +312,7 @@ consolas=(
     "SHARP X68000"
     "SONY PLAYSTATION 2"
     "SUPER CASSETTE VISION"
+    "SCUMMVM"
     "TRS-80 COLOR COMPUTER 1/2"
     "TANGERINE ORIC/ATMOS"
     "TEXAS INSTRUMENT TI-99/4A"
@@ -376,6 +379,7 @@ declare -A bios_ruta_base=(
     ["SHARP X68000"]="bios/keropi"
     ["SONY PLAYSTATION 2"]="bios/ps2"
     ["SUPER CASSETTE VISION"]="bios/scv"
+    ["SCUMMVM"]="bios/scummvm"
     ["TRS-80 COLOR COMPUTER 1/2"]="bios/trs80coco"
     ["TANGERINE ORIC/ATMOS"]="bios/oricutron"
     ["TEXAS INSTRUMENT TI-99/4A"]="bios/ti994a"
@@ -442,6 +446,7 @@ declare -A bios_archivos=(
     ["SHARP X68000"]="iplrom30.dat|iplromco.dat|iplromxv.dat"
     ["SONY PLAYSTATION 2"]="ps2-0230a-20080220.bin|ps2-0230e-20080220.bin|ps2-0230h-20080220.bin|ps2-0230j-20080220.bin"
     ["SUPER CASSETTE VISION"]="upd7801g.s01"
+    ["SCUMMVM"]="MT32_CONTROL.ROM|MT32_PCM.ROM"
     ["TRS-80 COLOR COMPUTER 1/2"]="bas10.rom|bas11.rom|bas12.rom|bas13.rom|extbas10.rom|extbas11.rom|mx1600bas.rom|disk10.rom|disk11.rom|hdbdw3bck.rom|mc10.rom|coco3.rom|coco3p.rom|alice32.rom|alice4k.rom"
     ["TANGERINE ORIC/ATMOS"]="basic11b.rom|basic10.rom|bd500.rom|jasmin.rom|microdis.rom|pravetzt.rom|8dos2.rom|teleass.rom|hyperbas.rom|telmon24.rom"
     ["TEXAS INSTRUMENT TI-99/4A"]="TI-994A.ctg|spchrom.bin|ti-disk.ctg"
