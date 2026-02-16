@@ -21,6 +21,7 @@ echo "             or from this site but if you internet shutdown in the process
 echo -e "\n   ################################################################################################"
 
 echo
+: << 'BLOQUE_ANTIGUO'
 bios_files=(
   "../roms/neogeo/neogeo.zip"
   "../roms/ports/tamagotchi/tama.b"
@@ -28,7 +29,6 @@ bios_files=(
   "../bios/gamecube/EUR/IPL.bin"
   "../bios/gamecube/JAP/IPL.bin"
   "../bios/gamecube/USA/IPL.bin"
-  "../bios/geolith/neogeo.zip"
   "../bios/geolith/aes.zip"
   "../bios/3do/3do_arcade_saot.bin"
   "../bios/atari5200/5200.rom"
@@ -255,6 +255,8 @@ bios_files=(
 for file in "${bios_files[@]}"; do
   [ -e "$file" ] && rm "$file" && echo "Cleaning: $file"
 done
+BLOQUE_ANTIGUO
+
 echo
 consolas=(
     "BIOS"
@@ -434,7 +436,7 @@ declare -A bios_archivos=(
     ["PHILIPS CD-I"]="cdimono1.zip|cdibios.zip|cdimono2.zip"
     ["PHILIPS VIDEOPAC+"]="g7400.bin|jopac.bin"
     ["SNK NEO-GEO"]="neogeo.zip"
-    ["SNK GEOLITH"]="aes.zip|neogeo.zip"
+    ["SNK GEOLITH"]="aes.zip"
     ["SNK NEO-GEO CD"]="neocd.bin|uni-bioscd.rom|top-sp1.bin|front-sp1.bin|neocd_sz.rom|neocd_z.rom|neocd_st.rom|neocd_t.rom|neocd_sf.rom|neocd_f.rom|000-lo.lo|ng-lo.rom"
     ["SCORPION 256K (ZX SPECTRUM CLONE)"]="256s-0.rom|256s-1.rom|256s-2.rom|256s-3.rom"
     ["SEGA DREAMCAST"]="awbios.zip|dc_boot.bin|dc_flash.bin|naomi.zip|airlbios.zip|hod2bios.zip|naomi2.zip|naomigd.zip"
@@ -455,7 +457,27 @@ declare -A bios_archivos=(
     ["MICROSOFT XBOX"]="Complex_4627.bin|mcpx_1.0.bin"
     ["TAMAGOTCHI"]="tama.b"
 )
+echo
+echo "Cleaning old BIOS files..."
+echo
+for bios in "${consolas[@]}"; do
+    base="${bios_ruta_base[$bios]}"
+    destino="../$base"
 
+    [[ -z "${bios_archivos[$bios]}" ]] && continue
+
+    IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
+
+    for archivo in "${archivos[@]}"; do
+        file="$destino/$archivo"
+
+        if [[ -f "$file" ]]; then
+            rm -f "$file"
+            echo "Cleaning: $file"
+        fi
+    done
+done
+echo
 # Recorrer las consolas en el orden que definimos en el array 'consolas'
 for bios in "${consolas[@]}"; do
     # Mensaje decorativo para las consolas
