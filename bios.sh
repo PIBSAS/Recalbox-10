@@ -258,7 +258,7 @@ done
 BLOQUE_ANTIGUO
 
 echo
-consolas=(
+declares -a consolas=(
     "BIOS"
     "AMIGA 1200 (AGA)"
     "AMIGA 600 (ECS/OCS)"
@@ -457,60 +457,68 @@ declare -A bios_archivos=(
     ["MICROSOFT XBOX"]="Complex_4627.bin|mcpx_1.0.bin"
     ["TAMAGOTCHI"]="tama.b"
 )
-echo
-echo "Cleaning old BIOS files..."
-echo
-for bios in "${consolas[@]}"; do
-    base="${bios_ruta_base[$bios]}"
-    destino="../$base"
-
-    [[ -z "${bios_archivos[$bios]}" ]] && continue
-
-    IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
-
-    for archivo in "${archivos[@]}"; do
-        file="$destino/$archivo"
-
-        if [[ -f "$file" ]]; then
-            rm -f "$file"
-            echo "Cleaning: $file"
-        fi
-    done
-done
-echo
-# Recorrer las consolas en el orden que definimos en el array 'consolas'
-for bios in "${consolas[@]}"; do
-    # Mensaje decorativo para las consolas
-    echo -e "\n\n"  # Imprimir dos líneas antes de cada título
+cleanup_bios() {
+    echo
+    echo "Cleaning old BIOS files..."
+    echo
+    for bios in "${consolas[@]}"; do
+        base="${bios_ruta_base[$bios]}"
+        destino="../$base"
     
-    if [[ "$bios" == "BIOS" ]]; then
-        echo -e "\n    ================================================================="
-        echo "          Getting BIOS from various console living in bios folder"
-        echo "    ================================================================="
-        echo
-    else
-        # Encabezado para cuando comienza la descarga de una nueva consola
-        echo -e "\n    ###############################################################"
-        echo "                        Getting BIOS for: $bios"
-        echo "    ###############################################################"
-        echo
-    fi
-
-    base="${bios_ruta_base[$bios]}"
-    destino="../${bios_ruta_base[$bios]}"
-
-    # Separar los archivos con IFS
-    IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
-
-    # Descargar los archivos para esta consola
-    for archivo in "${archivos[@]}"; do
-        origen="${base}/${archivo}"
-        echo
-        echo "Getting $archivo from ${RUTA}${origen} to $destino/"
-        echo
-        wget -c "${RUTA}${origen}" -P "$destino/"
+        [[ -z "${bios_archivos[$bios]:-}" ]] && continue
+    
+        IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
+    
+        for archivo in "${archivos[@]}"; do
+            file="$destino/$archivo"
+    
+            if [[ -f "$file" ]]; then
+                rm -f "$file"
+                echo "Cleaning: $file"
+            fi
+        done
     done
-done
+}
+download_bios() {
+    # Recorrer las consolas en el orden que definimos en el array 'consolas'
+    for bios in "${consolas[@]}"; do
+        # Mensaje decorativo para las consolas
+        echo -e "\n\n"  # Imprimir dos líneas antes de cada título
+        
+        if [[ "$bios" == "BIOS" ]]; then
+            echo -e "\n    ================================================================="
+            echo "          Getting BIOS from various console living in bios folder"
+            echo "    ================================================================="
+            echo
+        else
+            # Encabezado para cuando comienza la descarga de una nueva consola
+            echo -e "\n    ###############################################################"
+            echo "                        Getting BIOS for: $bios"
+            echo "    ###############################################################"
+            echo
+        fi
+    
+        base="${bios_ruta_base[$bios]}"
+        destino="../${base}"
+
+        [[ -z "${bios_archivos[$bios]:-}" ]] && continue
+
+        mkdir -p "$destino"
+        # Separar los archivos con IFS
+        IFS='|' read -r -a archivos <<< "${bios_archivos[$bios]}"
+    
+        # Descargar los archivos para esta consola
+        for archivo in "${archivos[@]}"; do
+            origen="${base}/${archivo}"
+            echo
+            echo "Getting $archivo from ${RUTA}${origen} to $destino/"
+            echo
+            wget -c "${RUTA}${origen}" -P "$destino/"
+        done
+    done
+}
+cleanup_bios
+download_bios
 echo
 echo "FINISH HIM!!!"
 echo
