@@ -20,7 +20,8 @@ echo "             Cleaning the garbage bios downloaded from other sites"
 echo "             or from this site but if you internet shutdown in the process"
 echo -e "\n   ################################################################################################"
 
-echobios_files=(
+echo
+bios_files=(
   "../roms/neogeo/neogeo.zip"
   "../roms/ports/tamagotchi/tama.b"
   "../bios/mame/hng64.zip"
