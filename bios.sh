@@ -258,7 +258,7 @@ done
 BLOQUE_ANTIGUO
 
 echo
-declares -a consolas=(
+declare -a consolas=(
     "BIOS"
     "AMIGA 1200 (AGA)"
     "AMIGA 600 (ECS/OCS)"
